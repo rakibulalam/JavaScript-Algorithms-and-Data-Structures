@@ -1,34 +1,60 @@
 
-let delta=[];
-function makeDelta(n)
+/**
+ * @description Uniform binary search is an optimization of the classic binary search algorithm invented by Donald Knuth and given in Knuth's The Art of Computer Programming. 
+It uses a lookup table to update a single array index, rather than taking the midpoint of an upper and a lower bound on each iteration; therefore, it is optimized for architectures (such as Knuth's MIX) on which
+->a table lookup is generally faster than an addition and a shift, and
+->many searches will be performed on the same array, or on several arrays of the same length
+ */
+let delta=[]; // lookup table
+/**
+ * 
+ * @param {Intiger} s size of array 
+ */
+function makeDelta(s)
 {
     let power=1; i=0;
     do{
         let half=power;
         power *=2;
-        delta[i]=Math.floor((n+half)/power);
+        delta[i]=Math.floor((s+half)/power);
     }while(delta[i++]!==0)
 }
-
-function uniformBinarySearch(n,key)
+/**
+ * @description uniform binary search algorithm
+ * @complexity O(log n)
+ * @param {Array} n
+ * @param {String|Integer|Any} value
+ * @return {Number|String}
+ */
+function uniformBinarySearch(n,value)
 {
+    /** define first index of lookup table */
     let i=delta[0]-1, d=0;
+    
     while(1)
     {
-        if(key===n[i]) return n[i];
-        else if(delta[d]===0) return -1;
+        /** define current value */
+        const currentValue=n[i];
+        /** check the value is matched */
+        if(value===currentValue) return currentValue;
+        /** if lookup table limit end*/
+        else if(delta[d]===0) return 'not found';
         else{
-            if(key<n[i])
+            /** if current value is greater than to lookup table value*/
+            if(value<currentValue)
             {
-                i -=delta[++d]
+                i -=delta[++d];
             }else{
                 i +=delta[++d];
             }
         }
     }
 }
-const n=[1,2,3,4,5,6,7,8,9,10], s=10, value=5;
+const n=[1,2,3,4,5,6,7,8,9,10], s=10, value=2;
+
+/** create lookup table*/
 makeDelta(s);
-console.log(delta);
-const result=uniformBinarySearch(n,value);
-console.log(makeDelta(1), delta,result)
+
+const result=uniformBinarySearch(n,9);
+
+console.log('The value is '+result);
