@@ -2,7 +2,7 @@ function interpolationSearch(n, value) {
 	let length = n.length,
 		lowIndex = 0;
 	highIndex = length - 1;
-	console.log(lowIndex, highIndex, length);
+
 	while (lowIndex <= highIndex && value >= n[lowIndex] && value <= n[highIndex]) {
 		if (lowIndex === highIndex) {
 			if (n[lowIndex] === value) return lowIndex;
@@ -13,11 +13,8 @@ function interpolationSearch(n, value) {
 			lowIndex + (highIndex - lowIndex) / (n[highIndex] - n[lowIndex]) * (value - n[lowIndex])
 		);
 		if (n[position] === value) return position;
-		if (n[position] < value) {
-			lowIndex = position + 1;
-		} else {
-			highIndex = position - 1;
-		}
+		if (n[position] < value) lowIndex = position + 1;
+		else highIndex = position - 1;
 	}
 	return -1;
 }
