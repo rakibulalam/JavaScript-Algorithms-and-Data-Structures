@@ -1,7 +1,7 @@
-function binarySearch(n, lowIndex, highIndex, value) {
+function binarySearch(arr, lowIndex, highIndex, value) {
 	while (lowIndex <= highIndex) {
 		let midIndex = Math.floor((lowIndex + highIndex) / 2);
-		const midValue = n[midIndex];
+		const midValue = arr[midIndex];
 		if (midValue === value) return midIndex;
 		if (midValue <= value) {
 			lowIndex = midIndex + 1;
@@ -11,19 +11,19 @@ function binarySearch(n, lowIndex, highIndex, value) {
 	}
 }
 
-function exponentialSearch(n, value) {
+function exponentialSearch(arr, value) {
 	let i = 1,
-		length = n.length;
+		length = arr.length;
 
-	while (i < length && n[i] <= value) {
+	while (i < length && arr[i] <= value) {
 		i *= 2;
     }
     console.log(i);
-	return binarySearch(n, i / 2, Math.min(i, length), value);
+	return binarySearch(arr, i / 2, Math.min(i, length), value);
 }
 
-const n = [ 10, 20, 40, 45, 55 ],
+const arr = [ 10, 20, 40, 45, 55 ],
 	value = 20;
 
-const result = exponentialSearch(n, value);
+const result = exponentialSearch(arr, value);
 console.log(result);

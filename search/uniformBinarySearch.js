@@ -21,12 +21,12 @@ function makeDelta(s)
 }
 /**
  * @description uniform binary search algorithm
- * @complexity O(log n)
- * @param {Array} n
+ * @complexity O(log arr)
+ * @param {Array} arr
  * @param {String|Integer|Any} value
  * @return {Number|String}
  */
-function uniformBinarySearch(n,value)
+function uniformBinarySearch(arr,value)
 {
     /** define first index of lookup table */
     let i=delta[0]-1, d=0;
@@ -34,7 +34,7 @@ function uniformBinarySearch(n,value)
     while(1)
     {
         /** define current value */
-        const currentValue=n[i];
+        const currentValue=arr[i];
         /** check the value is matched */
         if(value===currentValue) return currentValue;
         /** if lookup table limit end*/
@@ -50,11 +50,11 @@ function uniformBinarySearch(n,value)
         }
     }
 }
-const n=[1,2,3,4,5,6,7,8,9,10], s=10, value=2;
+const arr=[1,2,3,4,5,6,7,8,9,10], s=10, value=2;
 
 /** create lookup table*/
 makeDelta(s);
 
-const result=uniformBinarySearch(n,9);
+const result=uniformBinarySearch(arr,9);
 
 console.log('The value is '+result);
