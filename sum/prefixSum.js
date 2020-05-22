@@ -1,5 +1,5 @@
 /**
- * @description sum algorithm reducing the time complexity for the ranging
+ * @description sum algorithm known as also comulative algorithom, reducing the time complexity for the ranging
  * @param {*} arr 
  * @param {*} [[range1],[range2]] 
  */
