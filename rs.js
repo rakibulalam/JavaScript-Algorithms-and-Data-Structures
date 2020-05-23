@@ -8,67 +8,74 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
-    inputString += inputStdin;
+process.stdin.on('data', (inputStdin) => {
+	inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
-    inputString = inputString.split('\n');
+process.stdin.on('end', (_) => {
+	inputString = inputString.trim().split('\n').map((str) => str.trim());
 
-    main();
+	main();
 });
 
 function readLine() {
-    return inputString[currentLine++];
+	return inputString[currentLine++];
 }
+class Node {
+	constructor(value, x, y) {
+		this.value = value;
+		this.x = x;
+		this.y = y;
+	}
+}
+class Graph {
+	constructor() {
+		this.adjacencyList = {};
+	}
+	addVertex(vertex) {
+		if (this.adjacencyList[vertex]) this.adjacencyList[vertex] = {};
+    }
+    addEdge(vert1, vert2, distance){
 
+    }
+}
+// Complete the solve function below.
+function solve(h, v, junctions, edges) {
+	console.log(h, v, junctions, edges);
 
+	const distance = Math.sqrt(h * h + v * v);
 
-// Complete the packNumbers function below.
-function packNumbers(arr) {
-
-let nearest=[];
-for(let i=0; i<arr.length; i++)
-{
-    if(arr[i]===arr[i+1])
-    {
-        if(nearest.length>0)
-        {
-                const [value,count]=nearest[nearest.length-1].split(':');
-                if(value===arr[i].toString())
-                {
-                    nearest.push(arr[i]+':'+(parseInt(count)+1))
-                }else{
-
-                    nearest.push(arr[i]+':'+2)
-                }
-                }else{
-                    nearest.push(arr[i]+':'+2)
-                }
+	junctions.forEach(([ x, y ]) => {
         
-       
-         }
-   
-   
-        }
-return nearest;
+    });
 }
 
 function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+	const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    const arrCount = parseInt(readLine().trim(), 10);
+	const nhv = readLine().split(' ');
 
-    let arr = [];
+	const n = parseInt(nhv[0], 10);
 
-    for (let i = 0; i < arrCount; i++) {
-        const arrItem = parseInt(readLine().trim(), 10);
-        arr.push(arrItem);
-    }
+	const h = parseInt(nhv[1], 10);
 
-    const res = packNumbers(arr);
+	const v = parseInt(nhv[2], 10);
 
-    ws.write(res.join('\n') + '\n');
+	let junctions = Array(n);
 
-    ws.end();
+	for (let junctionsRowItr = 0; junctionsRowItr < n; junctionsRowItr++) {
+		junctions[junctionsRowItr] = readLine().split(' ').map((junctionsTemp) => parseInt(junctionsTemp, 10));
+	}
+
+	let edges = Array(n - 1);
+
+	for (let edgesRowItr = 0; edgesRowItr < n - 1; edgesRowItr++) {
+		edges[edgesRowItr] = readLine().split(' ').map((edgesTemp) => parseInt(edgesTemp, 10));
+	}
+
+	let result = solve(h, v, junctions, edges);
+
+	ws.write(result + '\n');
+
+	ws.end();
 }
