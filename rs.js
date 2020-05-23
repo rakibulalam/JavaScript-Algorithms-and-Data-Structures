@@ -1,81 +1,56 @@
-'use strict';
-
-const fs = require('fs');
-
-process.stdin.resume();
-process.stdin.setEncoding('utf-8');
-
-let inputString = '';
-let currentLine = 0;
-
-process.stdin.on('data', (inputStdin) => {
-	inputString += inputStdin;
-});
-
-process.stdin.on('end', (_) => {
-	inputString = inputString.trim().split('\n').map((str) => str.trim());
-
-	main();
-});
-
-function readLine() {
-	return inputString[currentLine++];
-}
 class Node {
 	constructor(value, x, y) {
 		this.value = value;
 		this.x = x;
 		this.y = y;
+		this.xd = 0; // x distance
+		this.yd = 0; // y distance
 	}
 }
 class Graph {
-	constructor() {
+	constructor(horizontal, vertical) {
+		this.h = horizontal;
+		this.v = vertical;
+		this.graph = {};
 		this.adjacencyList = {};
+		this.count = 0;
 	}
-	addVertex(vertex) {
-		if (this.adjacencyList[vertex]) this.adjacencyList[vertex] = {};
-    }
-    addEdge(vert1, vert2, distance){
+	addVertex(node) {
+		if (!this.adjacencyList[node.value]) this.adjacencyList[node.value] = {};
+		if (!this.graph[node.value]) this.graph[node.value] = node;
+	}
+	addEdge(vertex1, vertex2) {
+		this.adjacencyList[vertex1.value][vertex2.value] = vertex1;
+		this.adjacencyList[vertex2.value][vertex1.value] = vertex2;
+	}
 
-    }
+	BFS(startVertex) {
+		const visited = {};
+		visited[startVertex.value] = true;
+
+		let queue = [ startVertex ];
+
+		while (queue.length) {
+			const current = queue.shift();
+
+			for (let nearVertex in this.adjacencyList[current.value]) {
+				const distance = current.distance + this.adjacencyList[current.value][nearVertex];
+				console.log(distance);
+				if (this.distance > distance && !visited[nearVertex.value]) {
+					this.count++;
+					const vertex = this.graph[nearVertex];
+
+					vertex.distance = distance;
+					visited[vertex.value] = true;
+					queue.push(vertex);
+				}
+			}
+		}
+	}
 }
-// Complete the solve function below.
 function solve(h, v, junctions, edges) {
-	console.log(h, v, junctions, edges);
+	const n = junctions.length;
+	const queue = [];
 
-	const distance = Math.sqrt(h * h + v * v);
-
-	junctions.forEach(([ x, y ]) => {
-        
-    });
-}
-
-function main() {
-	const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
-
-	const nhv = readLine().split(' ');
-
-	const n = parseInt(nhv[0], 10);
-
-	const h = parseInt(nhv[1], 10);
-
-	const v = parseInt(nhv[2], 10);
-
-	let junctions = Array(n);
-
-	for (let junctionsRowItr = 0; junctionsRowItr < n; junctionsRowItr++) {
-		junctions[junctionsRowItr] = readLine().split(' ').map((junctionsTemp) => parseInt(junctionsTemp, 10));
-	}
-
-	let edges = Array(n - 1);
-
-	for (let edgesRowItr = 0; edgesRowItr < n - 1; edgesRowItr++) {
-		edges[edgesRowItr] = readLine().split(' ').map((edgesTemp) => parseInt(edgesTemp, 10));
-	}
-
-	let result = solve(h, v, junctions, edges);
-
-	ws.write(result + '\n');
-
-	ws.end();
+	while (queue.length) {}
 }
