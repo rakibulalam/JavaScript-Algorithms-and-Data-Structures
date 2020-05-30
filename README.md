@@ -11,7 +11,7 @@
   - Binary Search Tree
   - Red-Black Tree
   - B-tree
-  - Weight-balanced Tree
+  - AVL Tree
   - Binary Heap
 - Hash Table
 - Graph
@@ -31,6 +31,21 @@
   - The Ubiquitous Binary Search
 
 - Sorting Algorithms
+
+    - Bubble sort
+    - Bucket sort
+    - Counting sort
+    - Cube sort
+    - Heap sort
+    - Insertion sort
+    - Merge sort
+    - Quick sort
+    - Quick select sort
+    - Radix sort
+    - Selection sort
+    - Shell sort
+    - Timer sort
+    - Tree sort
 - **Recursive Algorithms:-** Solve the base case directly and then repeat each bar with simple or easy input (a base value is set at the beginning for which the algorithm is finished). It is used to solve problems divided into similar general or minor problems.
 - Greedy Algorithms
 - Dynamic Programming Algorithms
