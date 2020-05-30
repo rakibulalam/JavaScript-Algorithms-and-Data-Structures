@@ -9,12 +9,19 @@
 - Stack
 - Priority Queue
 - Linked List
+    - Singly Linked List
+    - Doubly Linked List
+    - Circular Linked List
 - Tree
   - Binary Tree
   - Binary Search Tree
   - Red-Black Tree
   - B-tree
   - AVL Tree
+  - N-ary Tree
+  - Splay Tree
+  - Suffix Tree
+  - Huffman Tree
   - Binary Heap
 - Hash Table
 - Trie
@@ -49,7 +56,7 @@
     - Radix sort
     - Selection sort
     - Shell sort
-    - Timer sort
+    - Time sort
     - Tree sort
 - **Recursive Algorithms:-** Solve the base case directly and then repeat each bar with simple or easy input (a base value is set at the beginning for which the algorithm is finished). It is used to solve problems divided into similar general or minor problems.
 - Greedy Algorithms
