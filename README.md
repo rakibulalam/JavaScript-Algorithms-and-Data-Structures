@@ -5,6 +5,9 @@
 ### Data Structures
 
 - Array
+- Queue
+- Stack
+- Priority Queue
 - Linked List
 - Tree
   - Binary Tree
@@ -14,6 +17,8 @@
   - AVL Tree
   - Binary Heap
 - Hash Table
+- Trie
+
 - Graph
 
 ### Algorithms
